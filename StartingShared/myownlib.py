@@ -102,8 +102,12 @@ def Var(v):
     ListNotNan=np.where(np.invert(np.isnan(v)))[0]
     vok=np.array([v[i] for i in ListNotNan])
     n = len(vok)
-    M = np.sum(vok)/n
-    return np.sum((vok-M)**2)/(n-1)
+    if (n == 0) or (n == 1):
+        V=np.nan
+    else:
+        M = np.sum(vok)/n
+        V=np.sum((vok-M)**2)/(n-1)
+    return V
 
 
 def Std(v):
